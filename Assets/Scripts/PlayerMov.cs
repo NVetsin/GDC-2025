@@ -25,11 +25,15 @@ public class PlayerMov : MonoBehaviour
         //hadap kanan
         //EXTRANOTE Vector(X,Y,Z) means Scale, numbers are fucked up cuz sprite used is fucked up since the beginning 
         if (gerakhorizontal > 0.01f)
-            transform.localScale = new Vector3(0.2659709f, 0.2624599f, 0.2814357f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
+             
+
+
 
         //hadap kiri
         else if (gerakhorizontal < -0.01f)
-            transform.localScale = new Vector3(-0.2659709f, 0.2624599f, 0.2814357f);
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+               
 
         //lompat
         if (Input.GetKey(KeyCode.Space) && grounded)
