@@ -6,6 +6,7 @@ public class PlayerMov : MonoBehaviour
    [SerializeField] private float speed;
    [SerializeField] private float jumpheight;
     public float gerakhorizontal;
+    private SpriteRenderer spriteRenderer;
     private Rigidbody2D body;
     private Animator anim;
     private bool grounded; 
@@ -14,6 +15,7 @@ public class PlayerMov : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>(); 
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -22,25 +24,16 @@ public class PlayerMov : MonoBehaviour
         gerakhorizontal = Input.GetAxis("Horizontal");
         body.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.linearVelocity.y);
 
-        //hadap kanan
-        //EXTRANOTE Vector(X,Y,Z) means Scale, numbers are fucked up cuz sprite used is fucked up since the beginning 
-        if (gerakhorizontal > 0.01f)
-            transform.localScale = new Vector3(1f, 1f, 1f);
-             
-
-
-
-        //hadap kiri
-        else if (gerakhorizontal < -0.01f)
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-               
+        // Changing Sprite when moving the other direction
+        if (gerakhorizontal < -0.01f) spriteRenderer.flipX = true;
+        else spriteRenderer.flipX = false;
 
         //lompat
         if (Input.GetKey(KeyCode.Space) && grounded)
             jump();
            
         //Mengaktifkan parameter animator
-        anim.SetBool ("Run", gerakhorizontal != 0);
+        anim.SetBool("Run", gerakhorizontal != 0);
         anim.SetBool("Grounded", grounded);
     }
 
