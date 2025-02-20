@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rammie_front_transparent_3_jump_0: -2896239869674332412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

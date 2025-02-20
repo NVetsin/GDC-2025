@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rammie_front_transparent_0: -977605641856382637
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
