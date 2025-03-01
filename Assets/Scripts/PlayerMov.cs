@@ -3,52 +3,130 @@ using UnityEngine;
 public class PlayerMov : MonoBehaviour
 {
     //SerializeField are used if you want to customize certain elements in the Unity instead keep coming back to here (can be modified while game testing too
-   [SerializeField] private float speed;
-   [SerializeField] private float jumpheight;
-    public float gerakhorizontal;
-    private SpriteRenderer spriteRenderer;
-    private Rigidbody2D body;
-    private Animator anim;
-    private bool grounded; 
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Rigidbody2D body;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private Animator anim;
 
-    private void Awake()
+    // Player main movement setting
+    private float speed = 7f;
+    private float jumpheight = 10f;
+    public float gerakhorizontal;
+
+    // Wall sliding mechanic setting
+    private float wallSlidingSpeed = 2f;
+    private bool isWallSliding;
+
+    // Wall slide jumping mechanic
+    private bool isWallJumping;
+    private float wallJumpingDirection;
+    private float wallJumpingTime = 0.2f;
+    private float wallJumpingCounter;
+    private float wallJumpingDuration = 0.4f;
+    private Vector2 wallJumpingPower = new Vector2(8f, 10f);
+
+    private void Start()
     {
-        body = GetComponent<Rigidbody2D>(); 
-        anim = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        //input movement
-        gerakhorizontal = Input.GetAxis("Horizontal");
-        body.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.linearVelocity.y);
+        isMoving();
+        isJumping();
+        wallSlide();
+        wallJump();
 
-        // Changing Sprite when moving the other direction
-        if (gerakhorizontal < -0.01f) spriteRenderer.flipX = true;
-        else spriteRenderer.flipX = false;
-
-        //lompat
-        if (Input.GetKey(KeyCode.Space) && grounded)
-            jump();
+        if (!isWallJumping)
+        {
+            faceRightLeft();
+        }
            
         //Mengaktifkan parameter animator
         anim.SetBool("Run", gerakhorizontal != 0);
-        anim.SetBool("Grounded", grounded);
+        anim.SetBool("Grounded", isGrounded());
     }
 
-    private void jump()
+    private void faceRightLeft()
     {
-        //lompat
-        body.linearVelocity = new Vector2(body.linearVelocity.x, jumpheight);
-        anim.SetTrigger("Jump"); 
-        grounded = false; 
+        // Changing Sprite when moving the other direction
+        if (gerakhorizontal < 0) spriteRenderer.flipX = true;
+        else if(gerakhorizontal > 0) spriteRenderer.flipX = false;
+    }
+    private void isMoving()
+    {
+        // Handle movement
+        gerakhorizontal = Input.GetAxis("Horizontal");
+        if (!isWallJumping) body.linearVelocity = new Vector2(gerakhorizontal * speed, body.linearVelocity.y);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void isJumping()
     {
-        //untuk memberitahu kalo ada di tanah
-        if (collision.gameObject.tag == "Ground")
-            grounded = true; 
+        // Handle Jumping
+        if (Input.GetKey(KeyCode.Space) && isGrounded())
+        {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpheight);
+            anim.SetTrigger("Jump");
+        }
+    }
+
+    private void wallSlide()
+    {
+        if (isWall() && !isGrounded() && gerakhorizontal != 0f)
+        {
+            isWallSliding = true;
+            body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Clamp( body.linearVelocity.y, -wallSlidingSpeed, float.MaxValue ));
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+    }
+
+    private void wallJump()
+    {
+        if (isWallSliding)
+        {
+            isWallJumping = false;
+            wallJumpingDirection = (spriteRenderer.flipX == true) ? 1f : -1f;
+            wallJumpingCounter = wallJumpingTime;
+            
+            CancelInvoke(nameof(stopWallJumping));
+        }
+        else
+        {
+            wallJumpingCounter -= Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.Space) && wallJumpingCounter > 0f)
+        {
+            isWallJumping = true;
+            body.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            wallJumpingCounter = 0f;
+
+            if (spriteRenderer.flipX != ((wallJumpingDirection == 1) ? false : true))
+            {
+                spriteRenderer.flipX = !spriteRenderer.flipX;
+            }
+
+            Invoke(nameof(stopWallJumping), wallJumpingDuration);
+        }
+    }
+
+    private void stopWallJumping()
+    {
+        isWallJumping = false;
+    }
+
+    private bool isGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private bool isWall()
+    {
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
 }
