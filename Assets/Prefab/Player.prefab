@@ -190,8 +190,6 @@ MonoBehaviour:
     m_Bits: 64
   anim: {fileID: 5211411695455105326}
   gerakhorizontal: 0
-  boxSize: {x: 0.14, y: 1}
-  castDistance: 0.38
 --- !u!95 &5211411695455105326
 Animator:
   serializedVersion: 7

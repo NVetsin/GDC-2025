@@ -26,6 +26,7 @@ public class PlayerMov : MonoBehaviour
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.4f;
+    private float isMovingDuration = 0.5f;
     private Vector2 wallJumpingPower = new Vector2(8f, 10f);
 
     private void Start()
@@ -34,6 +35,9 @@ public class PlayerMov : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("isWallJumping: " + isWallJumping);
+        Debug.Log("isWallSliding: " + isWallSliding);
+        Debug.Log("isGrounded: " + isGrounded());
         isMoving();
         isJumping();
         wallSlide();
@@ -94,6 +98,8 @@ public class PlayerMov : MonoBehaviour
             wallJumpingCounter = wallJumpingTime;
             
             CancelInvoke(nameof(stopWallJumping));
+            Invoke(nameof(isMoving), isMovingDuration); 
+            
         }
         else
         {
@@ -112,6 +118,7 @@ public class PlayerMov : MonoBehaviour
             }
 
             Invoke(nameof(stopWallJumping), wallJumpingDuration);
+            CancelInvoke(nameof(isMoving));
         }
     }
 
@@ -122,6 +129,7 @@ public class PlayerMov : MonoBehaviour
 
     private bool isGrounded()
     {
+        Invoke(nameof(isMoving), isMovingDuration);
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
