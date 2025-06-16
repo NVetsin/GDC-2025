@@ -6,7 +6,8 @@ public class PlayerMov : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private Transform wallCheck;
+    [SerializeField] private Transform wallCheckLeft;
+    [SerializeField] private Transform wallCheckRight;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Animator anim;
@@ -45,6 +46,7 @@ public class PlayerMov : MonoBehaviour
         }
            
         //Mengaktifkan parameter animator
+
         anim.SetBool("Run", gerakhorizontal != 0);
         anim.SetBool("Grounded", isGrounded());
     }
@@ -127,6 +129,6 @@ public class PlayerMov : MonoBehaviour
 
     private bool isWall()
     {
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        return Physics2D.OverlapCircle(wallCheckLeft.position, 0.2f, wallLayer) || Physics2D.OverlapCircle(wallCheckRight.position, 0.2f, wallLayer);
     }
 }

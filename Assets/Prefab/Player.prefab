@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2094673213268415251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5051134788979367408}
+  m_Layer: 0
+  m_Name: Wall Check Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5051134788979367408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094673213268415251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.892, y: 0.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4092433700299593945}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3348415316100002477
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,6 +67,7 @@ Transform:
   m_Children:
   - {fileID: 7206798659613469655}
   - {fileID: 4973761399224517265}
+  - {fileID: 5051134788979367408}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2087432305018031863
@@ -181,7 +213,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2087432305018031863}
   body: {fileID: 1706556230371389997}
   groundCheck: {fileID: 7206798659613469655}
-  wallCheck: {fileID: 4973761399224517265}
+  wallCheckLeft: {fileID: 4973761399224517265}
+  wallCheckRight: {fileID: 5051134788979367408}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -190,8 +223,6 @@ MonoBehaviour:
     m_Bits: 64
   anim: {fileID: 5211411695455105326}
   gerakhorizontal: 0
-  boxSize: {x: 0.14, y: 1}
-  castDistance: 0.38
 --- !u!95 &5211411695455105326
 Animator:
   serializedVersion: 7
@@ -224,7 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4973761399224517265}
   m_Layer: 0
-  m_Name: Wall Check
+  m_Name: Wall Check Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
