@@ -434,7 +434,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      jump and land_centered_0: -7661809845794876563
+      jump and land_centered_1: 805044301972021751
+      jump and land_centered_10: -3065349250620704052
+      jump and land_centered_11: 1170410844033780127
+      jump and land_centered_12: -4609408296949004837
+      jump and land_centered_2: 6377140275926015207
+      jump and land_centered_3: 428252434216936293
+      jump and land_centered_4: 3370520572540036433
+      jump and land_centered_5: 7351795282074585883
+      jump and land_centered_6: 1466074497995750641
+      jump and land_centered_7: 5765688112395304604
+      jump and land_centered_8: 4443276786242605434
+      jump and land_centered_9: 8151221423052149205
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
