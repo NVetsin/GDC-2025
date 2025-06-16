@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: 57f643dfd8710634eb69c4cc5350b519, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.46, y: -0.05}
+  m_Offset: {x: -0.49, y: -0.085298896}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -138,7 +138,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.62, y: 1.88}
+  m_Size: {x: 0.62, y: 1.8094022}
   m_EdgeRadius: 0
 --- !u!50 &1706556230371389997
 Rigidbody2D:
@@ -280,8 +280,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  wallCheck: {fileID: 4973761399224517265}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
   playerMovementSpeed: 7
-  playerJumpPower: 12
+  playerJumpPower: 9
 --- !u!1 &6657285544102717957
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4973761399224517265}
   m_Layer: 0
-  m_Name: Wall Check Left
+  m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -323,7 +327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7206798659613469655}
   m_Layer: 0
-  m_Name: Ground Check
+  m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
