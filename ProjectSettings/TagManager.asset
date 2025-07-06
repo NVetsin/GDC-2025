@@ -5,17 +5,19 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
-  - Wall
+  - Sign
+  - Health
+  - Spike
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Wall
   - Ground
-  - 
+  - Health
   - 
   - 
   - 
@@ -51,6 +53,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 83385723
+    locked: 0
+  - name: UI
+    uniqueID: 3398238555
     locked: 0
   m_RenderingLayers:
   - Default
