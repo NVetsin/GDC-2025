@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5211411695455105326}
   - component: {fileID: 4607603321529918983}
   - component: {fileID: 4752191849798502550}
+  - component: {fileID: 1355110477481742444}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -277,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userInput: {fileID: 750389783666584281, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  healthText: {fileID: 0}
   groundCheck: {fileID: 7206798659613469655}
   groundLayer:
     serializedVersion: 2
@@ -289,6 +291,19 @@ MonoBehaviour:
   playerMovementSpeed: 7
   playerJumpPower: 9
   playerWallSlidingSpeed: 2
+  playerDirection: {x: 0, y: 0}
+--- !u!114 &1355110477481742444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3348415316100002477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bce3efe3154aa244b666d09f353ef1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5694669958655506241
 GameObject:
   m_ObjectHideFlags: 0
